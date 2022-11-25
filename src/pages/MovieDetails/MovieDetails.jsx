@@ -1,9 +1,15 @@
-import { useParams } from "react-router-dom";
+import { Outlet, useParams, Link } from "react-router-dom";
 import * as API from '../../services/Api';
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { IMAGE_BASE_API_URL, FALLBACK_IMAGE_URL } from "constants";
+import { AdditionalInfo, Container, GoBackBtn, List } from "./MovieDetails.styled";
+import { MovieCard } from "components/MovieCard/Moviecard";
 
+const navItem = [
+    { href: 'cast', label: 'Cast' },
+    { href: 'reviews', label: 'Reviews' },
+    
+]
 
 export const MovieDetails = () => {
     const [movie, setMovie] = useState({});
@@ -13,12 +19,21 @@ export const MovieDetails = () => {
       
         getMovieById();
 
-        async function getMovieById(movieId){
+        async function getMovieById(){
           
-                const fetchMovie = await API.getMovieById(movieId);
-            console.log(fetchMovie);
+            const fetchMovie = await API.getMovieById(movieId);
+            const { genres, original_title, overview, poster_path, vote_average, release_date
+            } = fetchMovie;
+            console.log('fetchMovie', fetchMovie);
             
-                setMovie({fetchMovie});
+            setMovie({
+                title: original_title,
+                genres: genres.map(genre => genre.name).join(', '),
+                overview,
+                poster_path: poster_path ? IMAGE_BASE_API_URL + poster_path : FALLBACK_IMAGE_URL,
+                rating: Math.round(vote_average * 10),
+                year: release_date.slice(0, 4),
+            });
              
         }
         
@@ -26,48 +41,27 @@ export const MovieDetails = () => {
     }, [movieId])
     
     if (!movie) return null;
-    console.log(movie);
 
-
+    const { title, genres, overview, poster_path, rating, year } = movie;
 
     return (
-        <main>
-            <button type="button">Go back</button>
-            {/* <div>
-                <img src="https://via.placeholder.com/960x240" alt="" />
-                <div>
-                    <h2>
-                        Name - {movie.name} - {movieId}
-                    </h2>
-                    <p>User score: 74%</p>
-                    
-                    <h3>
-                        Overwiev - {movie.overwiev}
-                    </h3>
-                    <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus
-                    sunt excepturi nesciunt iusto dignissimos assumenda ab quae cupiditate
-                    a, sed reprehenderit? Deleniti optio quasi, amet natus reiciendis
-                    atque fuga dolore? Lorem, ipsum dolor sit amet consectetur adipisicing
-                    elit. Impedit suscipit quisquam incidunt commodi fugiat aliquam
-                    praesentium ipsum quos unde voluptatum?
-                    </p>
-                    
-                    <h3>
-                        Genres - {movie.genres}
-                    </h3>
-                    <p>
-                        Lorem ipsum dolor!
-                    </p>
-                </div>
-            </div> */}
-                {/* <div>
-                    <h3>
-                        Additional inormation
-                    </h3>
-                    <Link to={ <div> Cast</div>} />
-                    <Link to={ <div> Review</div>} />
-                </div> */}
-        </main>
+        <Container>
+            <GoBackBtn to="">Go back</GoBackBtn>
+            <MovieCard rating={rating} image={poster_path} title={title} genres={genres} overview={overview} year={year} />
+            <AdditionalInfo>
+                <h2>Additional inormation</h2>
+                <List>
+                    {navItem.map(({ href, label }) => (
+                        <li key={href}>
+                            <Link to={href}>{label}</Link>
+                        </li>
+                    ))}
+                </List>
+                <Outlet/>
+            
+            </AdditionalInfo>
+        </Container>
     )
 }
+
+
