@@ -3,6 +3,7 @@ import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
 import { Movies } from 'pages/Movies/Movies';
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
+import Cast from './Cast/Cast';
 import { Layout } from './Layout/Layout';
 import { NotFound } from './NotFound/NotFound';
 
@@ -23,7 +24,7 @@ export const App = () => {
           <Route index element={<Home />}/>
           <Route path="movies" element={<Movies/>}/>
           <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={ <div>Cast</div>  } />
+            <Route path="cast" element={ <Cast/>} />
             <Route path="reviews" element={ <div>Reviews</div>  } />
           </Route>
           <Route path="*" element={<NotFound />} />

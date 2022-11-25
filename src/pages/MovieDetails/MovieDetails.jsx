@@ -3,7 +3,7 @@ import * as API from '../../services/Api';
 import { useState, useEffect } from "react";
 import { IMAGE_BASE_API_URL, FALLBACK_IMAGE_URL } from "constants";
 import { AdditionalInfo, Container, GoBackBtn, List } from "./MovieDetails.styled";
-import { MovieCard } from "components/MovieCard/MovieCard1";
+import { MovieCard } from "components/MovieCard/MovieCard";
 
 const navItem = [
     { href: 'cast', label: 'Cast' },
@@ -19,7 +19,7 @@ export const MovieDetails = () => {
       
         getMovieById();
 
-        async function getMovieById(){
+        async function getMovieById() {
           
             const fetchMovie = await API.getMovieById(movieId);
             const { genres, original_title, overview, poster_path, vote_average, release_date
@@ -33,11 +33,8 @@ export const MovieDetails = () => {
                 poster_path: poster_path ? IMAGE_BASE_API_URL + poster_path : FALLBACK_IMAGE_URL,
                 rating: Math.round(vote_average * 10),
                 year: release_date.slice(0, 4),
-            });
-             
-        }
-        
-    
+            });            
+        }    
     }, [movieId])
     
     if (!movie) return null;

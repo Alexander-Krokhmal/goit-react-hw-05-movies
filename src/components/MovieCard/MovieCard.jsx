@@ -1,12 +1,13 @@
 import { Genres, ImageWrapper, MovieCardStyled, Overview, Rating } from "./MovieCard.styled"
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 
-export const MovieCard = ({title, genres, overview, image, rating, year}) => {
+export const MovieCard = ({ title, genres, overview, image, rating, year }) => {
+    console.log('title', title);
     return (
         <MovieCardStyled>
             <ImageWrapper>
-                <img src={image} alt={title} width="200px" height="300px"/>
+                <img src={image} alt={title} width="200px" height="300px" />
             </ImageWrapper>
         
             <div>
@@ -17,20 +18,21 @@ export const MovieCard = ({title, genres, overview, image, rating, year}) => {
                     <h3>Overwiev</h3>
                     <p>{overview}</p>
                 </Overview>
+
                 <Genres>
                     <h3>Genres</h3>
                     <p>{genres}</p>
                 </Genres>
             </div>
-    </MovieCardStyled>
-    )
-}
+        </MovieCardStyled>
+    );
+};
 
-MovieCard.propTypes = {
-    genres: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    overview: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    year: PropTypes.number.isRequired,
-  };
+// MovieCard.propTypes = {
+//     genres: PropTypes.string.isRequired,
+//     title: PropTypes.string.isRequired,
+//     image: PropTypes.string.isRequired,
+//     overview: PropTypes.string.isRequired,
+//     rating: PropTypes.number.isRequired,
+//     year: PropTypes.string.isRequired,
+//   };
