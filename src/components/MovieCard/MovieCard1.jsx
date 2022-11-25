@@ -1,4 +1,6 @@
 import { Genres, ImageWrapper, MovieCardStyled, Overview, Rating } from "./MovieCard.styled"
+import PropTypes from 'prop-types'
+
 
 export const MovieCard = ({title, genres, overview, image, rating, year}) => {
     return (
@@ -23,3 +25,12 @@ export const MovieCard = ({title, genres, overview, image, rating, year}) => {
     </MovieCardStyled>
     )
 }
+
+MovieCard.propTypes = {
+    genres: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    year: PropTypes.number.isRequired,
+  };

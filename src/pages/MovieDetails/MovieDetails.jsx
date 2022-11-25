@@ -3,7 +3,7 @@ import * as API from '../../services/Api';
 import { useState, useEffect } from "react";
 import { IMAGE_BASE_API_URL, FALLBACK_IMAGE_URL } from "constants";
 import { AdditionalInfo, Container, GoBackBtn, List } from "./MovieDetails.styled";
-import { MovieCard } from "components/MovieCard/Moviecard";
+import { MovieCard } from "components/MovieCard/MovieCard1";
 
 const navItem = [
     { href: 'cast', label: 'Cast' },
