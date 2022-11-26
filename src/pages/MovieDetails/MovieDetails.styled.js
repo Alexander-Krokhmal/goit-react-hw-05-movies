@@ -35,6 +35,7 @@ export const GoBackBtn = styled(Link)`
     min-width: 60px;
     max-width: 140px;
     padding: ${p => p.theme.space[1]}px;
+    height: ${p => p.theme.space[4]}px;
     border: 1px solid ${p => p.theme.colors.accentTextColor};
     color: ${p => p.theme.colors.white};
     font-weight: 500;

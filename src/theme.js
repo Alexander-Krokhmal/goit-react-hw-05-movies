@@ -1,7 +1,7 @@
 export const theme = Object.freeze({
     colors: {
       white: '#ffffff',
-      accent: '#987045',
+      accent: '#033c91f3',
       secondaryColor: '#00554e',
       muted: '#f6f6f6',
   
@@ -11,7 +11,7 @@ export const theme = Object.freeze({
       inputText: 'rgba(117, 117, 117, 0.5)',
   
       mainBackgroundColor: '#f5f4fa',
-      accentBackgroundColor: '#03453b',
+      accentBackgroundColor: '#9858bd',
       backgroundContactCardColor: 'rgba(247, 227, 201, 0.2)',
       btnShadowColor: 'rgba(0, 0, 0, 0.15)',
     },

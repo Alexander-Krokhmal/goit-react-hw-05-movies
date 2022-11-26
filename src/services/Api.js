@@ -37,7 +37,7 @@ export const searchMovieByQuery = async query => {
 
     try {
         const response = await axios.get(url, options);
-        return response.data;
+        return response.data.results;
     }
     catch (error) {
         console.log(error);
@@ -67,7 +67,7 @@ export const getMovieCastById = async movieId => {
 
     try {
         const response = await axios.get(url, options);
-        return response.data;
+        return response.data.cast;
     }
     catch (error) {
         console.log(error);
@@ -82,7 +82,7 @@ export const getMovieReviewsById = async movieId => {
 
     try {
         const response = await axios.get(url, options);
-        return response.data;
+        return response.data.results;
     }
     catch (error) {
         console.log(error);

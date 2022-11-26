@@ -8,7 +8,7 @@ import { CastList } from './Cast.styled';
 
 const Cast = () => {
     const [cast, setCast] = useState(null);
-    const { movieId } = useParams()
+    const { movieId } = useParams();
 
     useEffect(() => {
         getMovieCastById();
@@ -16,8 +16,8 @@ const Cast = () => {
         async function getMovieCastById() {
 
             const results = await API.getMovieCastById(movieId);
-            console.log('results :>> ', results);
-            const actorList = results.length > 20 ? results.slice(0, 20) : results;
+            // console.log('results :>> ', results);
+            const actorList = results.length > 24 ? results.slice(0, 24) : results;
             setCast(actorList);
         }
     }, [movieId]);
